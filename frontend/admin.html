@@ -1,0 +1,763 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VCET Events - Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<aside class="site-sidebar">
+    <h2 class="sidebar-brand">VCET Events</h2>
+
+<nav class="sidebar-nav">
+    <a href="index.html">Home</a>
+    <a href="events.html">Events</a>
+    <a href="admin.html">Admin</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+</nav>
+</aside>
+
+<main class="page-content">
+
+    <!-- WELCOME BANNER -->
+    <section class="welcome-banner">
+        <div class="welcome-content">
+            <p class="welcome-tag">VCET EVENT MANAGEMENT</p>
+            <h1>Welcome to Admin Dashboard!</h1>
+            <p>
+                Manage campus events, track student participation,
+                monitor attendance and review feedback — all in one place.
+            </p>
+
+            <button type="button"
+                onclick="showAdminSection('manageEventsSection')">
+                + Manage Events
+            </button>
+        </div>
+
+        <div class="welcome-icon">🎓</div>
+    </section>
+
+
+    <!-- DASHBOARD STATISTICS -->
+    <section class="dashboard-section" id="dashboardTop">
+        <h2>Dashboard Overview</h2>
+        <p class="dashboard-subtitle">
+            Here's an overview of your college event activities.
+        </p>
+
+        <div class="dashboard-cards">
+
+            <div class="dashboard-card purple">
+                <h3>Total Events</h3>
+                <p id="totalEvents">0</p>
+                <span>Events created</span>
+            </div>
+
+            <div class="dashboard-card blue">
+                <h3>Total Registrations</h3>
+                <p id="totalRegistrations">0</p>
+                <span>Student registrations</span>
+            </div>
+
+            <div class="dashboard-card green">
+                <h3>Total Attendance</h3>
+                <p id="totalAttendance">0</p>
+                <span>Students attended</span>
+            </div>
+
+            <div class="dashboard-card orange">
+                <h3>Total Feedback</h3>
+                <p id="totalFeedback">0</p>
+                <span>Feedback received</span>
+            </div>
+
+        </div>
+    </section>
+
+<!-- UPCOMING EVENTS PREVIEW -->
+<section class="upcoming-preview">
+    <div class="preview-heading">
+        <div>
+            <h2>Upcoming Events</h2>
+            <p>Explore the latest campus events.</p>
+        </div>
+        <span class="preview-icon">📅</span>
+    </div>
+
+    <div id="upcoming-events-list" class="upcoming-events-grid">
+        Loading upcoming events...
+    </div>
+</section>
+
+    <!-- ADMIN MENU -->
+    <section class="admin-navigation">
+        <h2>Admin Menu</h2>
+        <p>Select a section to manage your event activities.</p>
+
+        <div class="admin-menu-buttons">
+            <button type="button"
+                onclick="showAdminSection('manageEventsSection')">
+                <span>➕</span> Manage Events
+            </button>
+
+            <button type="button"
+                onclick="showAdminSection('existingEventsSection')">
+                <span>📅</span> Existing Events
+            </button>
+
+            <button type="button"
+                onclick="showAdminSection('registrationsSection')">
+                <span>👨‍🎓</span> Student Registrations
+            </button>
+
+            <button type="button"
+                onclick="showAdminSection('feedbackSection')">
+                <span>💬</span> Student Feedback
+            </button>
+        </div>
+    </section>
+
+
+    <!-- MANAGE EVENTS -->
+    <section class="events-section admin-content-section"
+        id="manageEventsSection">
+
+        <button type="button" class="back-dashboard-btn"
+            onclick="showAdminDashboard()">
+            ← Back to Dashboard
+        </button>
+
+        <h2>Manage Events</h2>
+        <p>Add new events or update existing event details.</p>
+
+        <form id="eventForm" class="event-admin-form">
+
+            <input type="hidden" id="eventId">
+
+            <input type="text" id="eventTitle"
+                placeholder="Event Title" required>
+
+            <input type="text" id="eventCategory"
+                placeholder="Category" required>
+
+            <input type="date" id="eventDate" required>
+
+            <input type="text" id="eventVenue"
+                placeholder="Venue" required>
+
+            <input type="number" id="eventCapacity"
+                placeholder="Capacity" min="1" required>
+
+            <textarea id="eventDescription"
+                placeholder="Event Description"></textarea>
+
+            <button type="submit" id="eventSubmit">
+                Add Event
+            </button>
+
+            <button type="button" onclick="resetEventForm()">
+                Clear
+            </button>
+
+        </form>
+
+        <p id="eventMessage"></p>
+    </section>
+
+
+    <!-- EXISTING EVENTS -->
+    <section class="events-section admin-content-section"
+        id="existingEventsSection">
+
+        <button type="button" class="back-dashboard-btn"
+            onclick="showAdminDashboard()">
+            ← Back to Dashboard
+        </button>
+
+        <h2>Existing Events</h2>
+        <p>View, edit and delete the events created by the administrator.</p>
+
+        <div id="admin-event-list">
+            Loading events...
+        </div>
+    </section>
+
+
+    <!-- STUDENT REGISTRATIONS -->
+    <section class="events-section admin-content-section"
+        id="registrationsSection">
+
+        <button type="button" class="back-dashboard-btn"
+            onclick="showAdminDashboard()">
+            ← Back to Dashboard
+        </button>
+
+        <h2>Student Registrations</h2>
+        <p>View student registrations and manage attendance.</p>
+
+        <div id="registration-list">
+            Loading registrations...
+        </div>
+
+        <p id="attendance-message"></p>
+    </section>
+
+
+    <!-- STUDENT FEEDBACK -->
+    <section class="events-section feedback-section admin-content-section"
+        id="feedbackSection">
+
+        <button type="button" class="back-dashboard-btn"
+            onclick="showAdminDashboard()">
+            ← Back to Dashboard
+        </button>
+
+        <h2>Student Feedback</h2>
+        <p>View feedback submitted by students.</p>
+
+        <div id="feedback-list" class="feedback-table-wrapper">
+            Loading feedback...
+        </div>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="admin-footer">
+        <p>© 2026 VCET Events | College Event Management System</p>
+    </footer>
+
+</main>
+
+
+<script>
+
+// SHOW SELECTED ADMIN SECTION
+function showAdminSection(sectionId) {
+
+    document.querySelectorAll(".admin-content-section").forEach(section => {
+        section.style.display = "none";
+    });
+
+    const selectedSection = document.getElementById(sectionId);
+
+    if (selectedSection) {
+        selectedSection.style.display = "block";
+
+        selectedSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }
+}
+
+
+// BACK TO DASHBOARD
+function showAdminDashboard() {
+
+    document.querySelectorAll(".admin-content-section").forEach(section => {
+        section.style.display = "none";
+    });
+
+    document.getElementById("dashboardTop").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+// LOAD UPCOMING EVENTS PREVIEW
+async function loadUpcomingEvents() {
+    const container = document.getElementById("upcoming-events-list");
+
+    try {
+        const response = await fetch("http://localhost:8080/api/events");
+
+        if (!response.ok) {
+            throw new Error("Unable to load events");
+        }
+
+        const events = await response.json();
+
+        const today = new Date().toISOString().split("T")[0];
+
+        const upcomingEvents = events
+            .filter(event => event.eventDate >= today)
+            .sort((a, b) => a.eventDate.localeCompare(b.eventDate))
+            .slice(0, 3);
+
+        if (upcomingEvents.length === 0) {
+            container.textContent = "No upcoming events available.";
+            return;
+        }
+
+        container.innerHTML = upcomingEvents.map(event => `
+            <div class="upcoming-event-card">
+                <h3>${escapeHTML(event.title)}</h3>
+                <p>📌 ${escapeHTML(event.category)}</p>
+                <p>📅 ${new Date(event.eventDate + "T00:00:00").toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric"
+}).replaceAll("/", "-")}</p>
+                <p>📍 ${escapeHTML(event.venue)}</p>
+            </div>
+        `).join("");
+
+    } catch (error) {
+        container.textContent = "Unable to load upcoming events.";
+        console.error(error);
+    }
+}
+
+// LOAD EVENTS
+async function loadAdminEvents() {
+
+    try {
+        const response = await fetch("http://localhost:8080/api/events");
+        const events = await response.json();
+
+        const container = document.getElementById("admin-event-list");
+
+        if (events.length === 0) {
+            container.textContent = "No events available.";
+            return;
+        }
+
+        let html = `
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Date</th>
+                    <th>Venue</th>
+                    <th>Capacity</th>
+                    <th>Actions</th>
+                </tr>
+        `;
+
+        events.forEach(event => {
+            html += `
+                <tr>
+                    <td>${event.eventId}</td>
+                    <td>${escapeHTML(event.title)}</td>
+                    <td>${escapeHTML(event.category)}</td>
+                    <td>${event.eventDate}</td>
+                    <td>${escapeHTML(event.venue)}</td>
+                    <td>${event.capacity}</td>
+                    <td>
+                        <button onclick="editEvent(
+                            ${event.eventId},
+                            '${escapeHTML(event.title)}',
+                            '${escapeHTML(event.category)}',
+                            '${event.eventDate}',
+                            '${escapeHTML(event.venue)}',
+                            ${event.capacity},
+                            '${escapeHTML(event.description || "")}'
+                        )">Edit</button>
+
+                        <button onclick="deleteEvent(${event.eventId})">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            `;
+        });
+
+        html += "</table>";
+        container.innerHTML = html;
+
+    } catch (error) {
+        document.getElementById("admin-event-list").textContent =
+            "Unable to load events. Check API server.";
+    }
+}
+
+
+// ESCAPE HTML
+function escapeHTML(value) {
+
+    return String(value).replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    })[char]);
+}
+
+
+// EDIT EVENT
+function editEvent(id, title, category, date, venue, capacity, description) {
+
+    document.getElementById("eventId").value = id;
+    document.getElementById("eventTitle").value = title;
+    document.getElementById("eventCategory").value = category;
+    document.getElementById("eventDate").value = date;
+    document.getElementById("eventVenue").value = venue;
+    document.getElementById("eventCapacity").value = capacity;
+    document.getElementById("eventDescription").value = description;
+
+    document.getElementById("eventSubmit").textContent = "Update Event";
+    document.getElementById("eventMessage").textContent =
+        "Editing event ID: " + id;
+
+    showAdminSection("manageEventsSection");
+}
+
+
+// RESET EVENT FORM
+function resetEventForm() {
+
+    document.getElementById("eventForm").reset();
+    document.getElementById("eventId").value = "";
+    document.getElementById("eventSubmit").textContent = "Add Event";
+    document.getElementById("eventMessage").textContent = "";
+}
+
+
+// ADD OR UPDATE EVENT
+document.getElementById("eventForm").addEventListener("submit", async function(e) {
+
+    e.preventDefault();
+
+    const id = document.getElementById("eventId").value;
+
+    const data = new URLSearchParams({
+        eventId: id,
+        title: document.getElementById("eventTitle").value,
+        category: document.getElementById("eventCategory").value,
+        eventDate: document.getElementById("eventDate").value,
+        venue: document.getElementById("eventVenue").value,
+        capacity: document.getElementById("eventCapacity").value,
+        description: document.getElementById("eventDescription").value
+    });
+
+    const url = id
+        ? "http://localhost:8080/api/admin/events/update"
+        : "http://localhost:8080/api/admin/events";
+
+    try {
+
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: data
+        });
+
+        const result = await response.json();
+
+        document.getElementById("eventMessage").textContent =
+            result.message || "Operation completed.";
+
+        if (response.ok) {
+            resetEventForm();
+            loadAdminEvents();
+            loadDashboardStats();
+        }
+
+    } catch (error) {
+
+        document.getElementById("eventMessage").textContent =
+            "Error connecting to server.";
+    }
+});
+
+
+// DELETE EVENT
+async function deleteEvent(id) {
+
+    if (!confirm("Are you sure you want to delete this event?")) {
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            "http://localhost:8080/api/admin/events/delete",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: new URLSearchParams({ eventId: id })
+            }
+        );
+
+        const result = await response.json();
+
+        document.getElementById("eventMessage").textContent =
+            result.message || "Delete operation completed.";
+
+        if (response.ok) {
+            loadAdminEvents();
+            loadDashboardStats();
+        }
+
+    } catch (error) {
+
+        document.getElementById("eventMessage").textContent =
+            "Error connecting to server.";
+    }
+}
+
+
+// LOAD DASHBOARD STATISTICS
+async function loadDashboardStats() {
+
+    try {
+
+        const response = await fetch(
+            "http://localhost:8080/api/dashboard-stats"
+        );
+
+        if (!response.ok) {
+            throw new Error("Unable to load dashboard");
+        }
+
+        const stats = await response.json();
+
+        document.getElementById("totalEvents").textContent =
+            stats.totalEvents;
+
+        document.getElementById("totalRegistrations").textContent =
+            stats.totalRegistrations;
+
+        document.getElementById("totalAttendance").textContent =
+            stats.totalAttendance;
+
+        document.getElementById("totalFeedback").textContent =
+            stats.totalFeedback;
+
+    } catch (error) {
+        console.error("Dashboard Error:", error);
+    }
+}
+
+
+// LOAD REGISTRATIONS
+async function loadRegistrations() {
+
+    const list = document.getElementById("registration-list");
+
+    try {
+
+        const response = await fetch(
+            "http://localhost:8080/api/registrations"
+        );
+
+        if (!response.ok) {
+            throw new Error("Unable to load registrations");
+        }
+
+        const registrations = await response.json();
+
+        if (registrations.length === 0) {
+            list.textContent = "No registrations found.";
+            return;
+        }
+
+        const table = document.createElement("table");
+
+        table.innerHTML = `
+            <tr>
+                <th>ID</th>
+                <th>Roll Number</th>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Event</th>
+                <th>Attendance</th>
+            </tr>
+        `;
+
+        registrations.forEach(item => {
+
+            const row = table.insertRow();
+
+            [
+                item.registrationId,
+                item.rollNo,
+                item.name,
+                item.department,
+                item.eventTitle
+            ].forEach(value => {
+
+                const cell = row.insertCell();
+                cell.textContent = value;
+            });
+
+            const attendanceCell = row.insertCell();
+
+            const presentButton = document.createElement("button");
+            presentButton.textContent = "Present";
+            presentButton.onclick = () =>
+                markAttendance(item.registrationId, 1);
+
+            const absentButton = document.createElement("button");
+            absentButton.textContent = "Absent";
+            absentButton.onclick = () =>
+                markAttendance(item.registrationId, 0);
+
+            attendanceCell.append(presentButton, absentButton);
+        });
+
+        list.innerHTML = "";
+
+        table.style.cssText = `
+            width: 100%;
+            min-width: 700px;
+            border-collapse: collapse;
+            table-layout: fixed;
+        `;
+
+        table.querySelectorAll("th, td").forEach(cell => {
+            cell.style.cssText = `
+                border: 1px solid #ddd;
+                padding: 14px;
+                text-align: center;
+                overflow-wrap: anywhere;
+                vertical-align: middle;
+            `;
+        });
+
+        table.querySelectorAll("th").forEach(cell => {
+            cell.style.backgroundColor = "#7045a0";
+            cell.style.color = "white";
+        });
+
+        list.appendChild(table);
+
+    } catch (error) {
+
+        list.textContent =
+            "Unable to load registrations. Check backend server.";
+
+        console.error(error);
+    }
+}
+
+
+// MARK ATTENDANCE
+async function markAttendance(registrationId, attended) {
+
+    const message = document.getElementById("attendance-message");
+
+    const formData = new URLSearchParams();
+    formData.append("registrationId", registrationId);
+    formData.append("attended", attended);
+
+    try {
+
+        const response = await fetch(
+            "http://localhost:8080/api/attendance",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: formData.toString()
+            }
+        );
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.error || "Attendance failed");
+        }
+
+        message.textContent = result.message;
+        message.style.color = "green";
+
+        loadDashboardStats();
+
+    } catch (error) {
+
+        message.textContent = error.message;
+        message.style.color = "red";
+    }
+}
+
+
+// LOAD FEEDBACK
+async function loadFeedback() {
+
+    const list = document.getElementById("feedback-list");
+
+    try {
+
+        const response = await fetch(
+            "http://localhost:8080/api/feedback-list"
+        );
+
+        if (!response.ok) {
+            throw new Error("Unable to load feedback");
+        }
+
+        const feedbacks = await response.json();
+
+        if (feedbacks.length === 0) {
+            list.textContent = "No feedback found.";
+            return;
+        }
+
+        const table = document.createElement("table");
+
+        table.innerHTML = `
+            <tr>
+                <th>Feedback ID</th>
+                <th>Registration ID</th>
+                <th>Student Name</th>
+                <th>Event</th>
+                <th>Rating</th>
+                <th>Comments</th>
+            </tr>
+        `;
+
+        feedbacks.forEach(item => {
+
+            const row = table.insertRow();
+
+            [
+                item.feedbackId,
+                item.registrationId,
+                item.name,
+                item.eventTitle,
+                item.rating + " / 5",
+                item.comments
+            ].forEach(value => {
+
+                const cell = row.insertCell();
+                cell.textContent = value;
+            });
+        });
+
+        list.innerHTML = "";
+        list.appendChild(table);
+
+    } catch (error) {
+
+        list.textContent =
+            "Unable to load feedback. Check backend server.";
+
+        console.error(error);
+    }
+}
+
+
+// INITIAL LOAD
+loadDashboardStats();
+loadRegistrations();
+loadFeedback();
+loadAdminEvents();
+loadUpcomingEvents();
+</script>
+
+</main>
+</body>
+</html>

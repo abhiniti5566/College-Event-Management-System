@@ -1,0 +1,47 @@
+@startuml
+class Student {
+  - studentId: int
+  - rollNo: String
+  - name: String
+  - department: String
+  + registerForEvent(eventId: int): void
+  + viewStatus(): void
+}
+class Event {
+  - eventId: int
+  - title: String
+  - category: String
+  - eventDate: Date
+  - venue: String
+  - capacity: int
+  + create(): void
+  + update(): void
+  + delete(): void
+  + view(): void
+}
+class Registration {
+  - registrationId: int
+  - studentId: int
+  - eventId: int
+  - registeredAt: Timestamp
+  - status: String
+  + register(): boolean
+}
+class Attendance {
+  - attendanceId: int
+  - registrationId: int
+  - attended: boolean
+  + markAttendance(): void
+}
+class Feedback {
+  - feedbackId: int
+  - registrationId: int
+  - rating: int
+  - comments: String
+  + submit(): void
+}
+Student "1" -- "0..*" Registration
+Event "1" -- "0..*" Registration
+Registration "1" -- "0..1" Attendance
+Registration "1" -- "0..1" Feedback
+@enduml

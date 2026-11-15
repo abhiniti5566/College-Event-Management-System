@@ -1,0 +1,9 @@
+target/
+.idea/
+.vscode/
+*.class
+__pycache__/
+python/output/
+.env
+*.log
+src/main/resources/db.properties
