@@ -1,5 +1,7 @@
 # ER Diagram
 
+![ER Diagram](ER_DIAGRAM.png)
+
 ```mermaid
 erDiagram
     STUDENT ||--o{ REGISTRATION : makes
