@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Feedback | VCET</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<aside class="site-sidebar">
+
+    <h2 class="sidebar-brand">VCET Events</h2>
+
+    <nav class="sidebar-nav">
+        <a href="index.html">Home</a>
+        <a href="events.html">Events</a>
+        <a href="feedback.html" class="active">Feedback</a>
+        <a href="admin.html">Admin</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+</aside>
+
+<main class="page-content">
+
+    <section class="feedback-container">
+
+        <h1>Share Your Feedback</h1>
+
+        <p>Your feedback helps us improve future college events.</p>
+
+        <form id="feedbackForm">
+
+            <label for="rollNo">Student Roll Number</label>
+            <input type="text" id="rollNo"
+                   placeholder="Enter your roll number" required>
+
+            <label for="eventSelect">Select Event</label>
+            <select id="eventSelect" required>
+                <option value="">Choose an event</option>
+            </select>
+
+            <label for="rating">Rating</label>
+            <select id="rating" required>
+                <option value="">Select rating</option>
+                <option value="5">★★★★★ - Excellent</option>
+                <option value="4">★★★★ - Very Good</option>
+                <option value="3">★★★ - Good</option>
+                <option value="2">★★ - Average</option>
+                <option value="1">★ - Poor</option>
+            </select>
+
+            <label for="comments">Your Comments</label>
+            <textarea id="comments" rows="5"
+                      placeholder="Share your experience..."
+                      maxlength="500"></textarea>
+
+            <button type="submit">Submit Feedback</button>
+
+            <p id="feedbackMessage"></p>
+
+        </form>
+
+    </section>
+
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>

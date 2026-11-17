@@ -1,5 +1,7 @@
 
+```mermaid
 classDiagram
+
     class Event {
         -int eventId
         -String title
@@ -58,4 +60,4 @@ classDiagram
 
     EventManagementApp ..> DBConnection : uses
     ApiServer ..> DBConnection : uses
-    
+```

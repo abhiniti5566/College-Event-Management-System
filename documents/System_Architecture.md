@@ -1,3 +1,7 @@
+
+# System Architecture
+
+```mermaid
 flowchart TD
     A[Student] --> B[Frontend Website]
     C[Admin] --> B
@@ -18,3 +22,4 @@ flowchart TD
     M --> N[Data Preprocessing]
     N --> O[Data Visualization]
     O --> P[Analysis Reports]
+```

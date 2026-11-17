@@ -843,3 +843,84 @@ th, td {
         margin: 15px;
     }
 }
+
+/* Feedback Page */
+
+.feedback-container {
+    max-width: 750px;
+    margin: 40px auto;
+    padding: 40px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(120, 85, 170, 0.12);
+}
+
+.feedback-container h1 {
+    color: #7045a5;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.feedback-container > p {
+    color: #777;
+    margin-bottom: 30px;
+}
+
+#feedbackForm {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#feedbackForm label {
+    color: #513779;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+#feedbackForm input,
+#feedbackForm select,
+#feedbackForm textarea {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ded1f2;
+    border-radius: 10px;
+    background: #faf8ff;
+    font-size: 15px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+#feedbackForm input:focus,
+#feedbackForm select:focus,
+#feedbackForm textarea:focus {
+    border-color: #9870d0;
+}
+
+#feedbackForm button {
+    background: #8054b8;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+#feedbackForm button:hover {
+    background: #68409e;
+}
+
+#feedbackMessage {
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+    .feedback-container {
+        margin: 20px 10px;
+        padding: 22px;
+    }
+}
