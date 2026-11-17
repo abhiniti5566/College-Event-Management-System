@@ -9,9 +9,10 @@ flowchart TD
     E --> F[Python Data Retrieval]
     F --> G[Pandas Preprocessing]
     G --> H[Matplotlib Charts and Reports]
-```
+```![System Architecture](SYSTEM_ARCHITECTURE.png)
 
 ### Layers
+
 1. Presentation layer: Java menu and console input/output.
 2. Business layer: event capacity, duplicate registration, attendance and feedback rules.
 3. Data access layer: JDBC prepared statements and transactions.
